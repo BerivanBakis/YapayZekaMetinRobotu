@@ -1,0 +1,50 @@
+#  Berivan Bakış 16.05.2024
+version: '3.8'
+
+services:
+  db:
+    container_name: postgres_container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password123
+      POSTGRES_USER: user123
+      POSTGRES_DB: db123
+    volumes:
+      - "./db:/docker-entrypoint-initdb.d"
+    networks:
+      - backend_network
+
+  backend:
+    container_name: backend
+    image: backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: postgres_container
+      DB_USER: user123
+      DB_PASSWORD: password123
+      DB_NAME: db123
+    depends_on:
+      - db
+    networks:
+      - backend_network
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    networks:
+      - backend_network
+
+networks:
+  backend_network:
+    driver: bridge

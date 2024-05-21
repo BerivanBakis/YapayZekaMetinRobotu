@@ -1,0 +1,71 @@
+<!--  Berivan Bakış 16.05.2024 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akın Robotics</title>
+    <link rel="icon" href="images/download.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+</head>
+<body>
+    <div class="container clearfix">
+        <div class="chat">
+          <div class="chat-header clearfix">
+            <img src="https://media.wired.com/photos/6595c546f6145f9ca1309145/master/pass/_BC-wired_selmasabanovic_kaylareeferphoto-127.jpg" alt="avatar" />
+            <div class="chat-about">
+              <div class="chat-with">Yapay Zeka Robotu</div>
+              <div class="chat-num-messages">AI</div>
+            </div>
+            <i class="fa fa-star"></i>
+          </div>
+          <div class="chat-history">
+            <ul>
+            </ul>
+          </div>          
+          <div class="chat-message clearfix">
+            <textarea name="message-to-send" id="message-to-send" placeholder ="Metni Buraya Yazın" rows="3"></textarea>
+            <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+            <i class="fa fa-file-image-o"></i>            
+            <button>Gönder</button>    
+          </div>          
+        </div> 
+      </div> 
+      <div class="search-area">
+        <div class="search-icon">
+          <button id="chatTopic"><img src="images/chat.png" alt="resim">
+            SOHBET KONUSU</button>
+        </div>
+        <div class="search-text">
+          <p>
+          </p>
+          <iframe id="webSearchResult" style="display: none;"></iframe>
+        </div>
+      </div>
+    <script id="message-template" type="text/x-handlebars-template">
+      <li class="clearfix">
+        <div class="message-data align-right">
+          <span class="message-data-time" >{{time}}, Bugün</span> &nbsp; &nbsp;
+          <span class="message-data-name" >Sen</span> <i class="fa fa-circle me"></i>
+        </div>
+        <div class="message other-message float-right">
+          {{messageOutput}}
+        </div>
+      </li>
+    </script>
+    <script id="message-response-template" type="text/x-handlebars-template">
+      <li>
+        <div class="message-data">
+          <span class="message-data-name"><i class="fa fa-circle online"></i>Yapay Zeka AI</span>
+          <span class="message-data-time">{{time}}, Bugün</span>
+        </div>
+        <div class="message my-message">
+          {{{response}}}
+        </div>
+      </li>
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>
